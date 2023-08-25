@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HomeInsideOut.DataLayer\HomeInsideOut.DataLayer.csproj" />
+  </ItemGroup>
+
 </Project>

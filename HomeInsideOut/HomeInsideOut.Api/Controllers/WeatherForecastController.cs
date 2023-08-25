@@ -1,10 +1,9 @@
+using HomeInsideOut.Common.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeInsideOut.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : BaseController
     {
         private static readonly string[] Summaries = new[]
         {
