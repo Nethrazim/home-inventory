@@ -1,3 +1,4 @@
+using HomeInsideOut.BusinessLayer.Config;
 using HomeInsideOut.Common.Api.Middleware;
 
 namespace HomeInsideOut.Api
@@ -9,7 +10,7 @@ namespace HomeInsideOut.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddOptions<ConnectionStrings>().Bind(builder.Configuration.GetSection("ConnectionStrings"));
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

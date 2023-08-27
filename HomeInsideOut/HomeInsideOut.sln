@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeInsideOut.Common.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeInsideOut.Common.DataLayer", "HomeInsideOut.Common.DataLayer\HomeInsideOut.Common.DataLayer.csproj", "{725D2C7D-F191-4C76-9497-377654660C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeInsideOut.Common.Utils", "HomeInsideOut.Common.Utils\HomeInsideOut.Common.Utils.csproj", "{3751D33F-C577-4918-A4A6-B9A23D8EFDE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeInsideOut.Common.Utils", "HomeInsideOut.Common.Utils\HomeInsideOut.Common.Utils.csproj", "{3751D33F-C577-4918-A4A6-B9A23D8EFDE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentations", "Documentations", "{70358966-85B9-47E2-A144-7472B0191449}"
+	ProjectSection(SolutionItems) = preProject
+		model_generation.txt = model_generation.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
