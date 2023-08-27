@@ -1,3 +1,5 @@
+using HomeInsideOut.Common.Api.Middleware;
+
 namespace HomeInsideOut.Api
 {
     public class Program
@@ -26,7 +28,7 @@ namespace HomeInsideOut.Api
 
             app.UseAuthorization();
 
-
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.MapControllers();
 
             app.Run();
