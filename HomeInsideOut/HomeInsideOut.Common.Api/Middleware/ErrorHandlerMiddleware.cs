@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HomeInsideOut.Common.Api.Responses;
+using HomeInsideOut.Common.Utils.HttpErrors;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -27,14 +30,23 @@ namespace HomeInsideOut.Common.Api.Middleware
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
-                /*
+                
+                string message = string.Empty;
                 switch (error)
                 {
-                   
-                }
-                */
+                    case BaseException e:
+                        response.StatusCode = (int)e.StatusCode;
+                        message = e.Message;
+                        break;
 
-                var result = JsonSerializer.Serialize(new { message = error.Message });
+                    default:
+                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        message = HttpStatusCode.InternalServerError.ToString();
+                        break;
+                }
+                
+
+                var result = JsonSerializer.Serialize(new BaseResponse(message, (HttpStatusCode)response.StatusCode));
                 await response.WriteAsync(result);
             }
         }

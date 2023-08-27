@@ -1,4 +1,5 @@
 using HomeInsideOut.Common.Api.Controllers;
+using HomeInsideOut.Common.Utils.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeInsideOut.Api.Controllers
@@ -20,6 +21,7 @@ namespace HomeInsideOut.Api.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            ResponseHelper.ReturnNotFound("Customer id not found");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

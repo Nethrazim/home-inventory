@@ -9,5 +9,9 @@
   <ItemGroup>
 	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeInsideOut.Common.Utils\HomeInsideOut.Common.Utils.csproj" />
+  </ItemGroup>
     
 </Project>
