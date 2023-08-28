@@ -46,7 +46,7 @@ namespace HomeInsideOut.Common.Api.Middleware
                 }
                 
 
-                var result = JsonSerializer.Serialize(new BaseResponse(message, (HttpStatusCode)response.StatusCode));
+                var result = JsonSerializer.Serialize(new BaseResponse() { Message = message, StatusCode = (HttpStatusCode)response.StatusCode });
                 await response.WriteAsync(result);
             }
         }

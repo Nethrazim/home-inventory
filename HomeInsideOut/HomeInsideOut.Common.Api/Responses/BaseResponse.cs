@@ -9,12 +9,8 @@ namespace HomeInsideOut.Common.Api.Responses
 {
     public class BaseResponse
     {
-        public string Message { get; set; }
-        public HttpStatusCode StatusCode { get; set; }
+        public string Message { get; set; } = null!;
+        public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
         public bool HasError => StatusCode != HttpStatusCode.OK;
-        public BaseResponse(string message, HttpStatusCode statusCode) { 
-            Message = message;
-            StatusCode = statusCode;
-        }
     }
 }
