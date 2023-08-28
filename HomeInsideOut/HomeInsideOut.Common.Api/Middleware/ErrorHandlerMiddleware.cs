@@ -41,7 +41,7 @@ namespace HomeInsideOut.Common.Api.Middleware
 
                     default:
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        message = HttpStatusCode.InternalServerError.ToString();
+                        message = error.Message;
                         break;
                 }
                 

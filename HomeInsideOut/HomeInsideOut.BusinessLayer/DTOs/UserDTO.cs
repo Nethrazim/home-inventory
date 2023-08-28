@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeInsideOut.BusinessLayer.DTOs
 {
-    public class UserDTO
+    public class UserDTO : BaseDTO
     {
         public int Id { get; set; }
         public string Username { get; set; } = null!;
