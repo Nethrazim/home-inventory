@@ -21,9 +21,4 @@
     <ProjectReference Include="..\HomeInsideOut.Common.Api\HomeInsideOut.Common.Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\Responses\" />
-    <Folder Include="Entities\Requests\" />
-  </ItemGroup>
-
 </Project>

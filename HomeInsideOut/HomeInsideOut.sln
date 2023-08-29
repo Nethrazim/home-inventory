@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeInsideOut.BusinessLayer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeInsideOut.DataLayer", "HomeInsideOut.DataLayer\HomeInsideOut.DataLayer.csproj", "{8D027B1E-8F8A-4BFE-8CA4-13E99A2D5FA6}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HomeInsideOut.SQL", "HomeInsideOut.SQL\HomeInsideOut.SQL.sqlproj", "{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeInsideOut.Tests", "HomeInsideOut.Tests\HomeInsideOut.Tests.csproj", "{CBB42C37-B37E-4DBF-A35D-D07FCA501039}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9E48CE61-8436-4C87-880A-7AC2D6F2DE19}"
@@ -46,12 +44,6 @@ Global
 		{8D027B1E-8F8A-4BFE-8CA4-13E99A2D5FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D027B1E-8F8A-4BFE-8CA4-13E99A2D5FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D027B1E-8F8A-4BFE-8CA4-13E99A2D5FA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B86DC3CC-B37E-45B4-A6A9-3E6F05776ACD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{CBB42C37-B37E-4DBF-A35D-D07FCA501039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CBB42C37-B37E-4DBF-A35D-D07FCA501039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBB42C37-B37E-4DBF-A35D-D07FCA501039}.Release|Any CPU.ActiveCfg = Release|Any CPU

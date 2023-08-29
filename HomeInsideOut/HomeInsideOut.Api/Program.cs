@@ -1,6 +1,10 @@
 using AutoMapper;
 using HomeInsideOut.BusinessLayer.Config;
+using HomeInsideOut.Common.Api;
 using HomeInsideOut.Common.Api.Middleware;
+using HomeInsideOut.DataLayer.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace HomeInsideOut.Api
 {
@@ -12,16 +16,14 @@ namespace HomeInsideOut.Api
 
             // Add services to the container.
             builder.Services.AddControllers();
-
+            builder.Services.AddDbContext<HomeInsideOutContext>();
             builder.Services.AddOptions<ConnectionStrings>().Bind(builder.Configuration.GetSection("ConnectionStrings"));
+
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
-
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -30,13 +32,16 @@ namespace HomeInsideOut.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseMiddleware<ErrorHandlerMiddleware>();
-            app.MapControllers();
 
+            app.MapControllers();
+            
             app.Run();
         }
     }

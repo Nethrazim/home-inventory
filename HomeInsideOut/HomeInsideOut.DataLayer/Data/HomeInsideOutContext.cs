@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using HomeInsideOut.DataLayer.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace HomeInsideOut.DataLayer.Data
 {
     public partial class HomeInsideOutContext : DbContext
     {
-        public HomeInsideOutContext()
-        {
-        }
-
-        public HomeInsideOutContext(DbContextOptions<HomeInsideOutContext> options)
+        private readonly IConfiguration Configuration;
+        public HomeInsideOutContext(IConfiguration configuration, DbContextOptions<HomeInsideOutContext> options)
             : base(options)
         {
+            Configuration = configuration;
         }
 
         public virtual DbSet<Inventory> Inventories { get; set; } = null!;
@@ -24,7 +23,7 @@ namespace HomeInsideOut.DataLayer.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=ConnectionStrings:DbConnectionString");
+                optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DbConnectionString"));
             }
         }
 
