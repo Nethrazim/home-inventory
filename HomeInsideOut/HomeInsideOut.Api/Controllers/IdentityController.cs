@@ -1,37 +1,52 @@
 using AutoMapper;
 using HomeInsideOut.Api.Entities.Requests;
 using HomeInsideOut.Api.Entities.Responses;
+using HomeInsideOut.BusinessLayer.Config;
 using HomeInsideOut.BusinessLayer.DTOs;
+using HomeInsideOut.BusinessLayer.Helpers;
+using HomeInsideOut.BusinessLayer.Services;
 using HomeInsideOut.Common.Api.Controllers;
 using HomeInsideOut.Common.Utils.Helpers;
 using HomeInsideOut.DataLayer.Data;
 using HomeInsideOut.DataLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace HomeInsideOut.Api.Controllers
 {
     public class IdentityController : BaseController<IdentityController>
     {
-        private HomeInsideOutContext Context { get; set; }
-        public IdentityController(IMapper mapper, ILogger<IdentityController> logger, HomeInsideOutContext context) 
+        private JwtConfig JwtConfig { get; set; }
+        private IUserService UserService { get; set; }
+        public IdentityController(
+            IUserService userService,
+            IOptions<JwtConfig> jwtConfig, IMapper mapper, ILogger<IdentityController> logger) 
             : base(mapper, logger)
         {
-            Context = context;
-        } 
+            JwtConfig = jwtConfig.Value;
+            UserService = userService;
+        }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("authenticate")]
-        public AuthenticateResponse Authenticate(AuthenticateRequest request)
+        public async Task<AuthenticateResponse> Authenticate([FromBody] AuthenticateRequest request)
         {
-            var users = Context.Users.ToList();
-
             AuthenticateResponse response = new AuthenticateResponse()
             {
-                Entities = mapper.Map<List<UserDTO>>(users)
+                Entity = await UserService.FindById(23, throwExceptionIfNotFound: true)
             };
 
             return response; 
+        }
+
+        [HttpPost]
+        [Route("private")]
+        [Authorize(Roles = "admin")]
+        public string PrivateEndpoint()
+        {
+            return "Hello Private";
         }
     }
 }

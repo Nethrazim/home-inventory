@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HomeInsideOut.Common.BusinessLayer\HomeInsideOut.Common.BusinessLayer.csproj" />
     <ProjectReference Include="..\HomeInsideOut.DataLayer\HomeInsideOut.DataLayer.csproj" />
   </ItemGroup>
 

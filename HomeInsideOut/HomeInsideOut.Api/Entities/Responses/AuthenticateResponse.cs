@@ -3,7 +3,7 @@ using HomeInsideOut.Common.Api.Responses;
 
 namespace HomeInsideOut.Api.Entities.Responses
 {
-    public class AuthenticateResponse : EntitiesResponse<UserDTO>
+    public class AuthenticateResponse : EntityResponse<UserDTO>
     {
     }
 }

@@ -19,15 +19,13 @@ using HomeInsideOut.Api.Entities.Requests;
 
 namespace HomeInsideOut.Tests.Tests.Endpoints.Controllers.Identity
 {
-    [Collection("Context collection")]
+    [Collection("API collection")]
     public class AuthenticateIntegrationTest : BaseIntegrationTest
     {
         private string endpointUri = "api/Identity/authenticate";
         public AuthenticateIntegrationTest(GenericWebApplicationFactory<Program, HomeInsideOutContext, SeedData> factory)
             : base(factory.CreateClient())
-        {
-
-        }
+        { }
 
         [Fact]
         public async Task AuthenticateSuccesfully()

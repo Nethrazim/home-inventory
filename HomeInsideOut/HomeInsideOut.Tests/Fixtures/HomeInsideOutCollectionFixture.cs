@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HomeInsideOut.Tests.Fixtures
 {
-    [CollectionDefinition("Context collection")]
+    [CollectionDefinition("API collection")]
     public class HomeInsideOutCollectionFixture : ICollectionFixture<GenericWebApplicationFactory<Program, HomeInsideOutContext, SeedData>>
     {
 
