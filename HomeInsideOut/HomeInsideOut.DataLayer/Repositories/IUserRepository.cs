@@ -10,5 +10,6 @@ namespace HomeInsideOut.DataLayer.Repositories
 {
     public interface IUserRepository: IGenericRepository<User, int>
     {
+        public Task<User> Authenticate(string username, string password);
     }
 }

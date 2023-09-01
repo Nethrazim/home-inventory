@@ -2,12 +2,8 @@ using AutoMapper;
 using HomeInsideOut.Api.Entities.Requests;
 using HomeInsideOut.Api.Entities.Responses;
 using HomeInsideOut.BusinessLayer.Config;
-using HomeInsideOut.BusinessLayer.DTOs;
-using HomeInsideOut.BusinessLayer.Helpers;
 using HomeInsideOut.BusinessLayer.Services;
 using HomeInsideOut.Common.Api.Controllers;
-using HomeInsideOut.Common.Utils.Helpers;
-using HomeInsideOut.DataLayer.Data;
 using HomeInsideOut.DataLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +31,7 @@ namespace HomeInsideOut.Api.Controllers
         {
             AuthenticateResponse response = new AuthenticateResponse()
             {
-                Entity = await UserService.FindById(23, throwExceptionIfNotFound: true)
+                Entity = await UserService.GenerateTokenAsync(request.Username, request.Password)
             };
 
             return response; 

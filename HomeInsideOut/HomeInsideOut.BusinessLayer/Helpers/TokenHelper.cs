@@ -12,14 +12,13 @@ namespace HomeInsideOut.BusinessLayer.Helpers
 {
     public static class TokenHelper
     {
-        public static string GenerateToken(JwtConfig jwtConfig, string username, TimeSpan expiration, string[] permissions)
+        public static string GenerateToken(JwtConfig jwtConfig, string username, string[] permissions)
         {
             var keyBytes = Encoding.UTF8.GetBytes(jwtConfig.SigningKey);
             var symmetricKey = new SymmetricSecurityKey(keyBytes);
 
             var signingCredentials = new SigningCredentials(
                 symmetricKey,
-                // 👇 one of the most popular. 
                 SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>()
@@ -36,7 +35,7 @@ namespace HomeInsideOut.BusinessLayer.Helpers
                 issuer: jwtConfig.Issuer,
                 audience: jwtConfig.Audience,
                 claims: claims,
-                expires: DateTime.Now.Add(expiration),
+                expires: DateTime.Now.Add(TimeSpan.FromSeconds(jwtConfig.ExpirationSeconds)),
                 signingCredentials: signingCredentials);
 
             var rawToken = new JwtSecurityTokenHandler().WriteToken(token);

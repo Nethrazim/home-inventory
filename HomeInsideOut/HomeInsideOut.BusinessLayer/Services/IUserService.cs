@@ -6,5 +6,6 @@ namespace HomeInsideOut.BusinessLayer.Services
 {
     public interface IUserService: IGenericService<UserDTO, User, int>
     {
+        public Task<string> GenerateTokenAsync(string username, string password);
     }
 }
