@@ -1,15 +1,10 @@
-using AutoMapper;
-using HomeInsideOut.BusinessLayer.Config;
-using HomeInsideOut.BusinessLayer.Services;
-using HomeInsideOut.Common.Api;
-using HomeInsideOut.Common.Api.Middleware;
-using HomeInsideOut.DataLayer.Data;
-using HomeInsideOut.DataLayer.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
-using System.Runtime.CompilerServices;
+using Module.Identity.ServiceExtensions;
+using Shared.Api.Middleware;
+using Shared.BusinessLayer.Config;
+using Shared.DataLayer.Data;
+using Shared.Infrastructure.Extensions;
 using System.Text;
 
 namespace HomeInsideOut.Api
@@ -21,15 +16,12 @@ namespace HomeInsideOut.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllers();
-
+            builder.Services.AddSharedInfrastructure(builder.Configuration);
             builder.Services.AddOptions<ConnectionStringsConfig>().Bind(builder.Configuration.GetSection(ConnectionStringsConfig.SectionPath));
             builder.Services.AddOptions<JwtConfig>().Bind(builder.Configuration.GetSection(JwtConfig.SectionPath));
 
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddIdentityModule(builder.Configuration);
 
-            builder.Services.AddScoped<IUserService, UserService>();
-            
             var jwtOptions = builder.Configuration.GetSection(JwtConfig.SectionPath).Get<JwtConfig>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -66,7 +58,7 @@ namespace HomeInsideOut.Api
                 app.UseSwaggerUI();
             }
 
-            
+
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseHttpsRedirection();
@@ -76,7 +68,7 @@ namespace HomeInsideOut.Api
 
 
             app.MapControllers();
-            
+
             app.Run();
         }
     }

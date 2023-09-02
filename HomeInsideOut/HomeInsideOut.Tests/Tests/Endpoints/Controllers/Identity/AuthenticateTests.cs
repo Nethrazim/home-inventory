@@ -1,21 +1,12 @@
-﻿using HomeInsideOut.Api;
-using HomeInsideOut.Tests.Factories;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using HomeInsideOut.DataLayer.Data;
-using HomeInsideOut.Tests.Utilities;
-using HomeInsideOut.DataLayer.Models;
-using HomeInsideOut.Tests.Entities.Responses;
-using FluentAssertions;
-using HomeInsideOut.Tests.Common;
+﻿using FluentAssertions;
+using HomeInsideOut.Api;
 using HomeInsideOut.Api.Entities.Requests;
+using HomeInsideOut.Tests.Common;
+using HomeInsideOut.Tests.Entities.Responses;
+using HomeInsideOut.Tests.Factories;
+using HomeInsideOut.Tests.Utilities;
+using Shared.DataLayer.Data;
+using System.Net;
 
 namespace HomeInsideOut.Tests.Tests.Endpoints.Controllers.Identity
 {
@@ -34,10 +25,9 @@ namespace HomeInsideOut.Tests.Tests.Endpoints.Controllers.Identity
 
             var (response, httpResponse) = await requestHelper.sendGet<AuthenticateRequest, AuthenticateResponse>(
                 endpointUri, request, string.Empty);
-            
+
             httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
-            response?.Entities.Should().NotBeNullOrEmpty();
-            response?.Entities.Should().HaveCount(1);
+            response?.Entity.Should().NotBeNullOrEmpty();
         }
     }
 }

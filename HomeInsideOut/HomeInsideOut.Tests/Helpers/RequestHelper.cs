@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeInsideOut.Tests.Helpers
 {
@@ -33,7 +29,7 @@ namespace HomeInsideOut.Tests.Helpers
             HttpRequestMessage requestMessage = CreateHttpRequestMessage(uri, httpMethod, request, authorizationToken);
 
             var httpResponse = await httpClient.SendAsync(requestMessage);
-            
+
             if (httpResponse == null)
             {
                 return default((TResponse, HttpResponseMessage));
@@ -47,8 +43,8 @@ namespace HomeInsideOut.Tests.Helpers
         {
             var httpRequest = new HttpRequestMessage(httpMethod, uri)
             {
-                Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(request), 
-                Encoding.UTF8, 
+                Content = new StringContent(System.Text.Json.JsonSerializer.Serialize(request),
+                Encoding.UTF8,
                 "application/json")
             };
             httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);

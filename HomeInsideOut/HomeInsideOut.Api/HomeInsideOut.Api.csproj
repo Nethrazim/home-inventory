@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -19,9 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HomeInsideOut.BusinessLayer\HomeInsideOut.BusinessLayer.csproj" />
-    <ProjectReference Include="..\HomeInsideOut.Common.Api\HomeInsideOut.Common.Api.csproj" />
-    <ProjectReference Include="..\HomeInsideOut.DataLayer\HomeInsideOut.DataLayer.csproj" />
+    <ProjectReference Include="..\Module.Identity.BusinessLayer\Module.Identity.BusinessLayer.csproj" />
+    <ProjectReference Include="..\Module.Identity\Module.Identity.csproj" />
+    <ProjectReference Include="..\Shared.Api\Shared.Api.csproj" />
+    <ProjectReference Include="..\Shared.BusinessLayer\Shared.BusinessLayer.csproj" />
+    <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

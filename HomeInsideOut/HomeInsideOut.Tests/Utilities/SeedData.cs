@@ -1,10 +1,5 @@
-﻿using HomeInsideOut.DataLayer.Data;
-using HomeInsideOut.DataLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shared.DataLayer.Data;
+using Shared.DataLayer.Models;
 
 namespace HomeInsideOut.Tests.Utilities
 {

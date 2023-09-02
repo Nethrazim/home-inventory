@@ -1,17 +1,9 @@
-﻿using HomeInsideOut.DataLayer.Data;
+﻿using HomeInsideOut.Tests.Utilities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HomeInsideOut.Tests.Utilities;
 
 namespace HomeInsideOut.Tests.Factories
 {
@@ -38,7 +30,7 @@ namespace HomeInsideOut.Tests.Factories
 
                 services.AddSingleton<ISeedDataClass<TContext>, TSeed>();
 
-                services.AddDbContext<TContext>((sp,options) =>
+                services.AddDbContext<TContext>((sp, options) =>
                 {
                     options.UseSqlServer(connectionString);
                     options.EnableSensitiveDataLogging();
@@ -53,7 +45,7 @@ namespace HomeInsideOut.Tests.Factories
 
                     var seeder = scopedServices.GetRequiredService<ISeedDataClass<TContext>>();
 
-                   
+
 
                     try
                     {

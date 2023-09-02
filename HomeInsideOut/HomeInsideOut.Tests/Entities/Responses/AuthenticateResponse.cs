@@ -1,14 +1,8 @@
-﻿using HomeInsideOut.BusinessLayer.DTOs;
-using HomeInsideOut.Common.Api.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shared.Api.Responses;
 
 namespace HomeInsideOut.Tests.Entities.Responses
 {
-    public class AuthenticateResponse : EntitiesResponse<UserDTO>
+    public class AuthenticateResponse : EntityResponse<string>
     {
     }
 }

@@ -1,9 +1,9 @@
-﻿using HomeInsideOut.BusinessLayer.DTOs;
-using HomeInsideOut.Common.Api.Responses;
+﻿using Shared.Api.Responses;
 
 namespace HomeInsideOut.Api.Entities.Responses
 {
-    public class AuthenticateResponse : EntityResponse<string> { 
+    public class AuthenticateResponse : EntityResponse<string>
+    {
 
     }
 }
