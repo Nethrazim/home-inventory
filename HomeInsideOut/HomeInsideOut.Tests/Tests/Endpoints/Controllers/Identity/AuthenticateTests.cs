@@ -21,7 +21,7 @@ namespace HomeInsideOut.Tests.Tests.Endpoints.Controllers.Identity
         [Fact]
         public async Task AuthenticateSuccesfully()
         {
-            var request = new AuthenticateRequest() { Username = "test1", Password = "test1" };
+            var request = new AuthenticateRequest() { Username = "User1", Password = "asd" };
 
             var (response, httpResponse) = await requestHelper.sendGet<AuthenticateRequest, AuthenticateResponse>(
                 endpointUri, request, string.Empty);
