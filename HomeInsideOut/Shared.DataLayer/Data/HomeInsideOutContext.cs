@@ -1,35 +1,36 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Shared.DataLayer.Models;
-using Shared.DataLayer.Persistence;
 
 namespace Shared.DataLayer.Data
 {
-    public partial class HomeInsideOutContext : ModuleDbContext
+    public partial class HomeInsideOutContext : DbContext
     {
-        protected override string Schema => string.Empty;
+        public HomeInsideOutContext()
+        {
+        }
 
-        private readonly IConfiguration Configuration;
-        public HomeInsideOutContext(IConfiguration configuration, DbContextOptions<HomeInsideOutContext> options)
+        public HomeInsideOutContext(DbContextOptions<HomeInsideOutContext> options)
             : base(options)
         {
-            Configuration = configuration;
         }
 
         public virtual DbSet<Inventory> Inventories { get; set; } = null!;
+        public virtual DbSet<InventoryItem> InventoryItems { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DbConnectionString"));
+                optionsBuilder.UseSqlServer("Name=ConnectionStrings:DbConnectionString");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Inventory>(entity =>
@@ -42,6 +43,21 @@ namespace Shared.DataLayer.Data
                 entity.Property(e => e.Name)
                     .HasMaxLength(255)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<InventoryItem>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.InventoryItem)
+                    .HasForeignKey<InventoryItem>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_InventoryItems_Inventory");
             });
 
             modelBuilder.Entity<User>(entity =>

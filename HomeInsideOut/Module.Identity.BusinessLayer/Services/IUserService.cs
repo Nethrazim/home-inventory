@@ -4,7 +4,7 @@ using Shared.DataLayer.Models;
 
 namespace Module.Identity.BusinessLayer.Services
 {
-    public interface IUserService : IGenericService<UserDTO, User, int>
+    public interface IUserService : IGenericService<User>
     {
         public Task<string> GenerateTokenAsync(string username, string password);
     }

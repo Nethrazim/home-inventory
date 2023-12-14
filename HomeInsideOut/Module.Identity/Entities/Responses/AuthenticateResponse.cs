@@ -2,7 +2,10 @@
 
 namespace Module.Identity.Entities.Responses
 {
-    public class AuthenticateResponse : EntityResponse<string>
+using Module.Identity.BusinessLayer.DTOs;
+    using Module.Identity.Entities.Model;
+
+    public class AuthenticateResponse : EntityResponse<TokenModel>
     {
 
     }

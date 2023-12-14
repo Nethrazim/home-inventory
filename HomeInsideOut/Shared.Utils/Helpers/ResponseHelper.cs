@@ -13,5 +13,10 @@ namespace Shared.Utils.Helpers
         {
             throw new BadRequestException(message);
         }
+
+        public static void ReturnUnauthorized(string message)
+        {
+            throw new NotAuthorizedException(message);
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace Shared.DataLayer.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Shared.DataLayer.Models
 {
-    public partial class User
+    public partial class User : BaseEntity
     {
-        public int Id { get; set; }
         public string Username { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string HashedPassword { get; set; } = null!;

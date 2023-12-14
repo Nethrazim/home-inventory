@@ -13,7 +13,7 @@ namespace HomeInsideOut.Tests.Tests.Endpoints.Controllers.Identity
     [Collection("API collection")]
     public class AuthenticateIntegrationTest : BaseIntegrationTest
     {
-        private string endpointUri = "api/Identity/authenticate";
+        private string endpointUri = "api/identity/Identity/authenticate";
         public AuthenticateIntegrationTest(GenericWebApplicationFactory<Program, HomeInsideOutContext, SeedData> factory)
             : base(factory.CreateClient())
         { }
@@ -23,8 +23,8 @@ namespace HomeInsideOut.Tests.Tests.Endpoints.Controllers.Identity
         {
             var request = new AuthenticateRequest() { Username = "User1", Password = "asd" };
 
-            var (response, httpResponse) = await requestHelper.sendGet<AuthenticateRequest, AuthenticateResponse>(
-                endpointUri, request, string.Empty);
+            var (response, httpResponse) = await requestHelper.sendPost<AuthenticateRequest, AuthenticateResponse>(
+                "https://localhost:7195/"+endpointUri, request, string.Empty);
 
             httpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
             response?.Entity.Should().NotBeNullOrEmpty();

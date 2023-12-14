@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Module.Identity.BusinessLayer.Services;
+using Module.Identity.Entities.Model;
 using Module.Identity.Entities.Model.Requests;
 using Module.Identity.Entities.Responses;
 using Shared.Api.Controllers;
@@ -12,13 +13,13 @@ using Shared.BusinessLayer.Config;
 namespace Module.Identity.Controllers
 {
     [Route("/api/identity/[controller]")]
-    public class IdentityController : BaseController<IdentityController>
+    public class AccountController : BaseController<AccountController>
     {
         private IUserService UserService { get; set; }
         private JwtConfig JwtConfig { get; set; }
-        public IdentityController(
+        public AccountController(
             IUserService userService,
-            IOptions<JwtConfig> jwtConfig, IMapper mapper, ILogger<IdentityController> logger)
+            IOptions<JwtConfig> jwtConfig, IMapper mapper, ILogger<AccountController> logger)
             : base(mapper, logger)
         {
             JwtConfig = jwtConfig.Value;
@@ -32,15 +33,18 @@ namespace Module.Identity.Controllers
         {
             AuthenticateResponse response = new AuthenticateResponse()
             {
-                Entity = await UserService.GenerateTokenAsync(request.Username, request.Password)
+                Entity = new TokenModel() 
+                         { 
+                            Value = await UserService.GenerateTokenAsync(request.Email, request.Password) 
+                         }
             };
 
             return response;
         }
 
         [HttpPost]
-        [Route("private")]
-        [Authorize(Roles = "admin")]
+        [Route("create")]
+        [AllowAnonymous]
         public string PrivateEndpoint()
         {
             return "Hello Private";
