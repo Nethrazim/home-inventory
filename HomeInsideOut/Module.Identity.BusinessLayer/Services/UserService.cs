@@ -31,5 +31,15 @@ namespace Module.Identity.BusinessLayer.Services
 
             return TokenHelper.GenerateToken(JwtConfig, existingUser.Username, new[] { "admin" });
         }
+
+        public async Task<bool> CreateAccountAsync(string username, string email, string password)
+        {
+            if (await dbSet.FirstOrDefaultAsync(u => u.Username == username || u.Email == email) != null)
+            {
+                ResponseHelper.ReturnBadRequest("Invalid credentials");
+            }
+            //todo: generate salt, encrypt password => Create Password Service
+            return await Create(new User() { Username = username, Email = email, HashedPassword = password, Salt = password }, true);
+        }
     }
 }

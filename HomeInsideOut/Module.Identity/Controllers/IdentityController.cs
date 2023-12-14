@@ -9,6 +9,7 @@ using Module.Identity.Entities.Model.Requests;
 using Module.Identity.Entities.Responses;
 using Shared.Api.Controllers;
 using Shared.BusinessLayer.Config;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Module.Identity.Controllers
 {
@@ -45,9 +46,14 @@ namespace Module.Identity.Controllers
         [HttpPost]
         [Route("create")]
         [AllowAnonymous]
-        public string PrivateEndpoint()
+        public async Task<CreateAccountResponse> CreateAccount(CreateAccountRequest request)
         {
-            return "Hello Private";
+            CreateAccountResponse response = new CreateAccountResponse()
+            {
+                Value = await UserService.CreateAccountAsync(request.Username, request.Email, request.Password)
+            };
+
+            return response;
         }
     }
 }
