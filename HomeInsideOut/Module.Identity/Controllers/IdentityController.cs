@@ -35,9 +35,10 @@ namespace Module.Identity.Controllers
             AuthenticateResponse response = new AuthenticateResponse()
             {
                 Entity = new TokenModel() 
-                         { 
-                            Value = await UserService.GenerateTokenAsync(request.Email, request.Password) 
-                         }
+                { 
+                    Value = await UserService.
+                        GenerateTokenAsync(request.Email, request.Password) 
+                }
             };
 
             return response;

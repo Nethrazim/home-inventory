@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 namespace Shared.BusinessLayer.Services
 {
     public class GenericService<TEntity> : IGenericService<TEntity>
-        where TEntity : class
+        where TEntity : BaseEntity
  
     {
         public IMapper mapper { get; set; }
@@ -23,8 +23,7 @@ namespace Shared.BusinessLayer.Services
 
         public async Task<TEntity> FindById(int id, bool detached = false, bool throwExceptionIfNotFound = false)
         {
-            //var user = await dbContext.Set<TEntity>().FirstOrDefaultAsync((TEntity x) => x.Id == id);
-            TEntity user = null;
+            var user = await dbContext.Set<TEntity>().FirstOrDefaultAsync((TEntity x) => x.Id == id);
             if (throwExceptionIfNotFound && user == null) {
                 ResponseHelper.ReturnNotFound($"{typeof(TEntity).ToString()} not found");
             }
