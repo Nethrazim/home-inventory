@@ -48,6 +48,11 @@ namespace HomeInsideOut.Api
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+            {
+                builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+            }));
+
 
             var app = builder.Build();
 
@@ -65,7 +70,7 @@ namespace HomeInsideOut.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCors("corsapp");
 
             app.MapControllers();
 
