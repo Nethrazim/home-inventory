@@ -14,9 +14,10 @@ namespace HomeInsideOut.Tests.Factories
         where TSeed : class, ISeedDataClass<TContext>
     {
 
-        private static string databaseName = $"HomeInsideOut.Tests.{Guid.NewGuid().ToString()}";
-        private static string connectionString = $"Server=DESKTOP-6M09VOS\\SQLEXPRESS;Database={databaseName};Trusted_Connection=True;MultipleActiveResultSets=true";
+        private static string databaseName = "HomeInsideOut.Tests";
+        private static string connectionString = $"Server=DESKTOP-CCILHCT\\MSSQLSERVER01;Database={databaseName};Trusted_Connection=True;MultipleActiveResultSets=true";
 
+        public static string GetConnectionString => connectionString;
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             base.ConfigureWebHost(builder);

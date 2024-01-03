@@ -11,7 +11,7 @@ namespace HomeInsideOut.Tests.Utilities
             {
                 Username = "User1",
                 Email = "test1@gmail.com",
-                HashedPassword = "asd",
+                HashedPassword = "test1password",
                 Salt = "asd"
             };
 
