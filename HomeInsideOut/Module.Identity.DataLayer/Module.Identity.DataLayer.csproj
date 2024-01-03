@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HomeInsideOut.Common.DataLayer\Shared.DataLayer.csproj" />
     <ProjectReference Include="..\Shared.DataLayer\Shared.DataLayer.csproj" />
     <ProjectReference Include="..\Shared.Utils\Shared.Utils.csproj" />
   </ItemGroup>
